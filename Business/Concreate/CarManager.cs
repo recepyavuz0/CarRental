@@ -18,7 +18,15 @@ namespace Business.Concreate
 
         public void Add(Car car)
         {
-            _carDal.Add(car);
+            if (car.DailyPrice>0)
+            {
+                _carDal.Add(car);
+            }
+            else
+            {
+                Console.WriteLine("Aracın günlük kiralaması 0'dan küçük olamaz");
+            }
+            
         }
 
         public void Delete(Car car)
@@ -33,7 +41,17 @@ namespace Business.Concreate
 
         public List<Car> GetById(int id)
         {
-           return _carDal.GetById(id);
+            return _carDal.GetAll(p=>p.Id==id);
+        }
+
+        public List<Car> GetCarsByBrandId(int id)
+        {
+            return _carDal.GetAll(p => p.BrandId == id);
+        }
+
+        public List<Car> GetCarsByColorId(int id)
+        {
+            return _carDal.GetAll(p => p.ColorId == id);
         }
 
         public void Update(Car car)
