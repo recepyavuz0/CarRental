@@ -1,4 +1,5 @@
 ﻿using Business.Concreate;
+using Core.Utilities.Results;
 using DataAccess.Concreate.EntityFramework;
 using DataAccess.Concreate.InMemory;
 using Entities.Concreate;
@@ -21,8 +22,9 @@ namespace ConsoleUI
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
 
+
             Console.WriteLine("------------MARKA LİSTESİ-------------");
-            foreach (var brand in brandManager.GetAll())
+            foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1}", brand.Id, brand.Name);
             }
@@ -35,7 +37,7 @@ namespace ConsoleUI
             brandManager.Add(brand1);
             Console.WriteLine("Marka Eklendi");
             Console.WriteLine("------------MARKA LİSTESİ-------------");
-            foreach (var brand in brandManager.GetAll())
+            foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1}", brand.Id, brand.Name);
             }
@@ -48,7 +50,7 @@ namespace ConsoleUI
             brandManager.Update(brand2);
             Console.WriteLine("Marka Güncellendi");
             Console.WriteLine("------------MARKA LİSTESİ-------------");
-            foreach (var brand in brandManager.GetAll())
+            foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1}", brand.Id, brand.Name);
             }
@@ -60,7 +62,7 @@ namespace ConsoleUI
             brandManager.Delete(brand3);
             Console.WriteLine("Marka Silindi");
             Console.WriteLine("------------MARKA LİSTESİ-------------");
-            foreach (var brand in brandManager.GetAll())
+            foreach (var brand in brandManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1}", brand.Id, brand.Name);
             }
@@ -70,7 +72,7 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager(new EfCarDal());
             Console.WriteLine("---------- ARABA LİSTESİ ----------------");
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1} : {2} : {3} : {4} : {5}", car.Id, car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description);
             }
@@ -87,7 +89,7 @@ namespace ConsoleUI
             Console.WriteLine(car1.Description + " Eklendi");
 
             Console.WriteLine("---------- ARABA LİSTESİ ----------------");
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1} : {2} : {3} : {4} : {5}", car.Id, car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description);
             }
@@ -96,7 +98,7 @@ namespace ConsoleUI
             Console.WriteLine(car1.Description + " Silindi");
 
             Console.WriteLine("---------- ARABA LİSTESİ ----------------");
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1} : {2} : {3} : {4} : {5}", car.Id, car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description);
             }
@@ -114,13 +116,13 @@ namespace ConsoleUI
             carManager.Update(car2);
             Console.WriteLine(car1.Description + " Güncellendi.");
             Console.WriteLine("---------- ARABA LİSTESİ ----------------");
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine("{0} : {1} : {2} : {3} : {4} : {5}", car.Id, car.BrandId, car.ColorId, car.ModelYear, car.DailyPrice, car.Description);
             }
 
             Console.WriteLine("---------- ARABA DETAYLARI (JOIN) -----------------");
-            foreach (var car in carManager.GetCarDetails())
+            foreach (var car in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine("{0} : {1} : {2} : {3}", car.Description, car.BrandName, car.ColorName, car.DailyPrice);
             }
