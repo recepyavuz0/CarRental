@@ -13,6 +13,7 @@ namespace Business.Abstract
         IResult Update(Brand car);
 
         IDataResult<List<Brand>> GetAll();
+
         
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Linq;
 using System.Linq.Expressions;
 using Entities.DTOs;
+using Core.Utilities.Results;
 
 namespace DataAccess.Concreate.InMemory
 {
@@ -68,7 +69,7 @@ namespace DataAccess.Concreate.InMemory
             return _cars.Where(c => c.Id == id).ToList();
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto>GetCarDetails()
         {
             throw new NotImplementedException();
         }

@@ -13,9 +13,137 @@ namespace ConsoleUI
         {
             // CarManager();
             // BrandManager();
+            // ColorManager colorManager = new ColorManager(new EfColorDal());
+            // UserManager();
+            // CustomerManager();
+            
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
-            ColorManager colorManager = new ColorManager(new EfColorDal());
+            Console.WriteLine(rentalManager.Add(new Rental()
+            {
+                CarId = 1,
+                CustomerId = 1,
+                RentDate = new DateTime(2021, 03, 30)
+            }).Message);
 
+
+
+        }
+
+        private static void CustomerManager()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+
+            Console.WriteLine(customerManager.Add(new Customer()
+            {
+                UserId = 2,
+                CompanyName = "AAA Ajans"
+            }));
+
+            customerManager.Add(new Customer()
+            {
+                UserId = 3,
+                CompanyName = "BBB Ajans"
+            });
+
+            customerManager.Add(new Customer()
+            {
+                UserId = 4,
+                CompanyName = "BBB Ajans"
+            });
+
+            Console.WriteLine("------------------MÜŞTERİ LİSTESİ-------------------------");
+
+            foreach (var customer in customerManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} : {1} : {2}", customer.Id, customer.UserId, customer.CompanyName);
+            }
+
+            customerManager.Update(new Customer()
+            {
+                Id = 3,
+                UserId = 4,
+                CompanyName = "CCC Ajans"
+            });
+
+            Console.WriteLine("------------------MÜŞTERİ LİSTESİ-------------------------");
+
+            foreach (var customer in customerManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} : {1} : {2}", customer.Id, customer.UserId, customer.CompanyName);
+            }
+
+            customerManager.Delete(new Customer()
+            {
+                Id = 3
+            });
+
+            Console.WriteLine("------------------MÜŞTERİ LİSTESİ-------------------------");
+
+            foreach (var customer in customerManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} : {1} : {2}", customer.Id, customer.UserId, customer.CompanyName);
+            }
+        }
+
+        private static void UserManager()
+        {
+            UserManager userManager = new UserManager(new EfUserDal());
+
+            userManager.Add(new User()
+            {
+                FirstName = "Recep Cafer",
+                LastName = "Yavuz",
+                Email = "reecptest@gmail.com",
+                Password = "123456"
+            });
+            userManager.Add(new User()
+            {
+                FirstName = "Ali",
+                LastName = "Demir",
+                Email = "alitest@gmail.com",
+                Password = "654321"
+            });
+
+            userManager.Add(new User()
+            {
+                FirstName = "Can",
+                LastName = "Çelik",
+                Email = "cantest@gmail.com",
+                Password = "654321"
+            });
+
+            Console.WriteLine("------------------KULLANICI LİSTESİ-------------------------");
+            foreach (var user in userManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} : {1} : {2} : {3} : {4}", user.Id, user.FirstName, user.LastName, user.Email, user.Password);
+            }
+
+            userManager.Delete(new User()
+            {
+                Id = 1
+            });
+
+            Console.WriteLine("------------------KULLANICI LİSTESİ-------------------------");
+            foreach (var user in userManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} : {1} : {2} : {3} : {4}", user.Id, user.FirstName, user.LastName, user.Email, user.Password);
+            }
+
+            userManager.Update(new User()
+            {
+                Id = 3,
+                FirstName = "Anıl",
+                LastName = "Öz",
+                Email = "aniltest@gmail.com",
+                Password = "9876654"
+            });
+
+            Console.WriteLine("------------------KULLANICI LİSTESİ-------------------------");
+            foreach (var user in userManager.GetAll().Data)
+            {
+                Console.WriteLine("{0} : {1} : {2} : {3} : {4}", user.Id, user.FirstName, user.LastName, user.Email, user.Password);
+            }
         }
 
         private static void BrandManager()
