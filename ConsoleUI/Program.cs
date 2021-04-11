@@ -14,16 +14,19 @@ namespace ConsoleUI
             // CarManager();
             // BrandManager();
             // ColorManager colorManager = new ColorManager(new EfColorDal());
+
+            // colorManager.Add(new Color {Id=5, Name = "Siyah" });
             // UserManager();
             // CustomerManager();
             
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+           RentalManager rentalManager = new RentalManager(new EfRentalDal());
 
             Console.WriteLine(rentalManager.Add(new Rental()
             {
-                CarId = 1,
-                CustomerId = 1,
-                RentDate = new DateTime(2021, 03, 30)
+                CarId = 2,
+                CustomerId = 2,
+                RentDate = new DateTime(2021, 03, 30),
+                ReturnDate = new DateTime(2021, 04, 30)
             }).Message);
 
 

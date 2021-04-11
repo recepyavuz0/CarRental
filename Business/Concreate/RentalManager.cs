@@ -22,9 +22,9 @@ namespace Business.Concreate
         {
 
 
-            if (rental.ReturnDate==null)
+            if (rental.ReturnDate == null)
             {
-                
+
                 return new ErrorResult(Messages.DateInvalid);
             }
             else
@@ -32,7 +32,7 @@ namespace Business.Concreate
                 _rentalDal.Add(rental);
                 return new SuccessResult(Messages.RentalAdded);
             }
-           
+
 
         }
 

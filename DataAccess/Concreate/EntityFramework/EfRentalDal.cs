@@ -25,7 +25,7 @@ namespace DataAccess.Concreate.EntityFramework
                                 Description = car.Description,
                                 CompanyName = customer.CompanyName,
                                 RentDate = r.RentDate,
-                                ReturnDate = r.ReturnDate
+                                ReturnDate = r.ReturnDate.Value
                             };
                 return result.ToList();
 
