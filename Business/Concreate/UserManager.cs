@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
@@ -18,14 +20,13 @@ namespace Business.Concreate
             _userDal = userDal;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
-            if (user.Password.Length >= 6)
-            {
+
                 _userDal.Add(user);
                 return new SuccessResult(Messages.UserAdded);
-            }
-            return new ErrorResult(Messages.PasswordInvalid);
+           
         }
 
         public IResult Delete(User user)

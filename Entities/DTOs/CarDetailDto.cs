@@ -10,6 +10,6 @@ namespace Entities.DTOs
         public string Description { get; set; }
         public string BrandName { get; set; }
         public string ColorName { get; set; }
-        public short DailyPrice { get; set; }
+        public decimal DailyPrice { get; set; }
     }
 }
